@@ -1,5 +1,5 @@
 abstract public class ChessPiece {
-    private String color;
+    protected String color;
     private boolean check = true;
 
     public ChessPiece(String color) {

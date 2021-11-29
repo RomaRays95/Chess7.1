@@ -6,7 +6,7 @@ public class Horse extends ChessPiece{
 
     @Override
     public String getColor() {
-        return null;
+        return super.color;
     }
 
     @Override
