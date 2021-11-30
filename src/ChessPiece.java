@@ -1,6 +1,6 @@
 abstract public class ChessPiece {
     protected String color;
-    private boolean check = true;
+    protected boolean check = true;
 
     public ChessPiece(String color) {
         this.color = color;
