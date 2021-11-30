@@ -28,4 +28,9 @@ public class Horse extends ChessPiece{
     public String getSymbol() {
         return "H";
     }
+
+    @Override
+    public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        return canMoveToPosition(chessBoard, line, column, toLine, toColumn);
+    }
 }

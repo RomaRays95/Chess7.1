@@ -24,4 +24,9 @@ public class Queen extends ChessPiece{
     public String getSymbol() {
         return "Q";
     }
+
+    @Override
+    public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        return canMoveToPosition(chessBoard, line, column, toLine, toColumn);
+    }
 }

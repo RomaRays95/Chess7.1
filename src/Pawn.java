@@ -26,6 +26,18 @@ public class Pawn extends ChessPiece{
         return false;
     }
 
+    public boolean canAttack (ChessBoard chessBoard, int line, int column, int toLine, int toColumn){
+        if ((toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7)){
+            if (color.equals("White")){
+                return  ((toLine - line == 1) && (Math.abs(toColumn - column) == 1));
+            }
+            else {
+                return  ((toLine - line == -1) && (Math.abs(toColumn - column) == 1));
+            }
+        }
+        else return false;
+    }
+
     @Override
     public String getSymbol() {
         return "P";

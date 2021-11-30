@@ -23,4 +23,9 @@ public class Bishop extends ChessPiece{
     public String getSymbol() {
         return "B";
     }
+
+    @Override
+    public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        return canMoveToPosition(chessBoard, line, column, toLine, toColumn);
+    }
 }
