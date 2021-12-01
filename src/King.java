@@ -20,16 +20,19 @@ public class King extends ChessPiece{
     }
 
     public boolean isUnderAttack(ChessBoard board, int line, int column){
+        boolean result = false;
         for (int i = 7; i > -1; i--) {
             for (int j = 0; j < 8; j++) {
                 if (board.board[i][j] != null) {
                     if (!board.board[i][j].getColor().equals(color)) {
-                        return (board.board[i][j].canAttack(board, i, j, line, column));
+                        if (board.board[i][j].canAttack(board, i, j, line, column)){
+                            result = true;
+                        };
                     }
                 }
             }
         }
-        return false;
+        return result;
     }
 
     @Override
