@@ -11,12 +11,17 @@ public class King extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        boolean result = false;
         if ((toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7)){
             if (!(line == toLine && column == toColumn)){
-                return ((Math.abs(toLine - line) <= 1) && (Math.abs(toColumn - column) <= 1));
+                result = ((Math.abs(toLine - line) <= 1) && (Math.abs(toColumn - column) <= 1));
             }
         }
-        return false;
+        if (chessBoard.board[toLine][toColumn] != null) {
+            if (chessBoard.board[toLine][toColumn].getColor().equals(color)) result = false;
+        }
+        if (isUnderAttack(chessBoard, toLine, toColumn)) result = false;
+        return result;
     }
 
     public boolean isUnderAttack(ChessBoard board, int line, int column){
@@ -27,7 +32,7 @@ public class King extends ChessPiece{
                     if (!board.board[i][j].getColor().equals(color)) {
                         if (board.board[i][j].canAttack(board, i, j, line, column)){
                             result = true;
-                        };
+                        }
                     }
                 }
             }

@@ -31,7 +31,6 @@ public class Pawn extends ChessPiece{
                 }
             }
         }
-
         return moving || canAttack(chessBoard, line, column, toLine, toColumn);
     }
 
