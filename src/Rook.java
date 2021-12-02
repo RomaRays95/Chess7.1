@@ -11,10 +11,15 @@ public class Rook extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        boolean result = false;
         if ((line == toLine && column != toColumn) || (line != toLine && column == toColumn)){
-            return (toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7);
+            result = (toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7);
         }
-        return false;
+        if (chessBoard.board[toLine][toColumn] != null) {
+            if (chessBoard.board[toLine][toColumn].getColor().equals(color)) result = false;
+        }
+        if (!ChessPiece.way(chessBoard, line, column, toLine, toColumn)) result = false;
+        return result;
     }
 
     @Override

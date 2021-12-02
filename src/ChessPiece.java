@@ -10,4 +10,17 @@ abstract public class ChessPiece {
     abstract public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
     abstract public String getSymbol();
     abstract public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
+
+    public static boolean way(ChessBoard chessBoard, int line, int column, int toLine, int toColumn){
+        int steps = (Math.abs(toLine - line) + Math.abs(toColumn - column) -1);
+        int l, c;
+        l = Integer.compare(toLine, line);
+        c = Integer.compare(toColumn, column);
+        for (int i = 1; i <= steps; i++) {
+            if (chessBoard.board[line + (l*i)][column + (c*i)] != null){
+                return false;
+            }
+        }
+        return true;
+    }
 }

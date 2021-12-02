@@ -11,12 +11,17 @@ public class Bishop extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        boolean result = false;
         if (line != toLine && column != toColumn){
             if ((toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7)){
-                return Math.abs(toLine - line) == Math.abs(toColumn - column);
+                result = Math.abs(toLine - line) == Math.abs(toColumn - column);
             }
         }
-        return false;
+        if (chessBoard.board[toLine][toColumn] != null) {
+            if (chessBoard.board[toLine][toColumn].getColor().equals(color)) result = false;
+        }
+        if (!ChessPiece.way(chessBoard, line, column, toLine, toColumn)) result = false;
+        return result;
     }
 
     @Override
