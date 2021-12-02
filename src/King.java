@@ -11,6 +11,13 @@ public class King extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        boolean result;
+        result = canMoveWithoutIsUnderAttack(chessBoard, line, column, toLine, toColumn);
+        if (isUnderAttack(chessBoard, toLine, toColumn)) result = false;
+        return result;
+    }
+
+    private boolean canMoveWithoutIsUnderAttack (ChessBoard chessBoard, int line, int column, int toLine, int toColumn){
         boolean result = false;
         if ((toLine >= 0 && toLine <= 7) && (toColumn >= 0 && toColumn <= 7)){
             if (!(line == toLine && column == toColumn)){
@@ -20,7 +27,6 @@ public class King extends ChessPiece{
         if (chessBoard.board[toLine][toColumn] != null) {
             if (chessBoard.board[toLine][toColumn].getColor().equals(color)) result = false;
         }
-        if (isUnderAttack(chessBoard, toLine, toColumn)) result = false;
         return result;
     }
 
@@ -47,6 +53,6 @@ public class King extends ChessPiece{
 
     @Override
     public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        return canMoveToPosition(chessBoard, line, column, toLine, toColumn);
+        return canMoveWithoutIsUnderAttack(chessBoard, line, column, toLine, toColumn);
     }
 }

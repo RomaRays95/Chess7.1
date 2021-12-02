@@ -12,7 +12,10 @@ abstract public class ChessPiece {
     abstract public boolean canAttack(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
 
     public static boolean way(ChessBoard chessBoard, int line, int column, int toLine, int toColumn){
-        int steps = (Math.abs(toLine - line) + Math.abs(toColumn - column) -1);
+        int steps;
+        if (Math.abs(toLine - line) == Math.abs(toColumn - column))
+            steps = Math.abs(toLine - line) - 1;
+        else steps = (Math.abs(toLine - line) + Math.abs(toColumn - column) -1);
         int l, c;
         l = Integer.compare(toLine, line);
         c = Integer.compare(toColumn, column);
